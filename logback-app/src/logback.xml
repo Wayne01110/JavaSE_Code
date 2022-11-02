@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <jmxConfigurator />
+
+    <!-- 日志添加到控制台 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>E:/日志/Wayne-data.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/smt.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="businessLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 按每小时滚动文件，如果一个小时内达到10M也会滚动文件, 滚动文件将会压缩成zip格式 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>E:/日志/Wayne-data2-%d{yyyy-MM-dd_HH}.log%i.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>1MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <!-- 独立的pattern -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS},%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- project default level 本身没有指定appender不打印 传递给上级root-->
+    <logger name="com.github.miemiedev.smt" level="DEBUG" />
+    <logger name="org.mybatis.spring.SqlSessionFactoryBean" level="DEBUG" />
+
+
+    <!--
+    level:用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF
+    ，默认debug
+    <root>可以包含零个或多个<appender-ref>元素，标识这个输出位置将会被本日志界别控制。
+    -->
+    <!--log4jdbc -->
+    <!-- <logger name="jdbc.sqltiming" level="INFO"/> -->
+
+    <root level="ALL">
+        <!--注意：如果这里不配置关联打印位置，该位置将不会记录日志-->
+        <appender-ref ref="console" />
+        <appender-ref ref="rollingFile" />
+    </root>
+</configuration>
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/myCharStream" isTestSource="false" packagePrefix="com.Wayne_02" />
+      <sourceFolder url="file://$MODULE_DIR$/myNet" isTestSource="false" packagePrefix="com.Wayne_01" />
+      <sourceFolder url="file://$MODULE_DIR$/myOtherStream" isTestSource="false" packagePrefix="com.Wayne_02" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

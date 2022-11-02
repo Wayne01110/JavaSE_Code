@@ -1,0 +1,2 @@
+className=com.Wayne_06.Teacher
+methodName=teach
